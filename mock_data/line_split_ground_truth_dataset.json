@@ -1,0 +1,1212 @@
+{
+  "description": "Synthetic ground-truth dataset for testing detection of one-old-line -> multiple-new-line splits using normalized Levenshtein distance.",
+  "distance_definition": "NLD(a,b) = Levenshtein(normalize(a), normalize(b)) / max(len(normalize(a)), len(normalize(b)))",
+  "normalization": "Trim each line and collapse runs of whitespace to one space. Preserve case and punctuation.",
+  "multi_line_join_policy": "Trim/normalize each candidate line, then join candidate lines with one ASCII space before computing NLD.",
+  "interpretation": "Lower NLD means more similar. For incremental split detection, keep adding adjacent candidate lines while NLD decreases; stop when adding the next line increases NLD.",
+  "line_numbering": "1-based within each old/new snippet.",
+  "records": [
+    {
+      "commit": "c001",
+      "message": "Split long method signature across three lines",
+      "old_contents": [
+        {
+          "line": 1,
+          "text": "protected Size2D arrangeRR(Range withRange, Range highRange, Graphics2D g2){"
+        },
+        {
+          "line": 2,
+          "text": "double w[] = new double[5];"
+        },
+        {
+          "line": 3,
+          "text": "double h[] = new double[5];"
+        }
+      ],
+      "new_contents": [
+        {
+          "line": 1,
+          "text": "protected Size2D arrangeRR"
+        },
+        {
+          "line": 2,
+          "text": "(Range withRange, Range"
+        },
+        {
+          "line": 3,
+          "text": "highRange, Graphics2D g2){"
+        },
+        {
+          "line": 4,
+          "text": "double w[] = new double[5];"
+        },
+        {
+          "line": 5,
+          "text": "double h[] = new double[5];"
+        }
+      ],
+      "unchanged_mappings": [
+        {
+          "old_line": 2,
+          "new_line": 4,
+          "content": "double w[] = new double[5];"
+        },
+        {
+          "old_line": 3,
+          "new_line": 5,
+          "content": "double h[] = new double[5];"
+        }
+      ],
+      "candidate_list": [
+        {
+          "old_line": 1,
+          "old_text": "protected Size2D arrangeRR(Range withRange, Range highRange, Graphics2D g2){",
+          "candidates": [
+            {
+              "new_lines": [
+                1
+              ],
+              "joined_text": "protected Size2D arrangeRR",
+              "normalized_levenshtein_distance": 0.6579
+            },
+            {
+              "new_lines": [
+                1,
+                2
+              ],
+              "joined_text": "protected Size2D arrangeRR (Range withRange, Range",
+              "normalized_levenshtein_distance": 0.3684
+            },
+            {
+              "new_lines": [
+                1,
+                2,
+                3
+              ],
+              "joined_text": "protected Size2D arrangeRR (Range withRange, Range highRange, Graphics2D g2){",
+              "normalized_levenshtein_distance": 0.013
+            },
+            {
+              "new_lines": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "joined_text": "protected Size2D arrangeRR (Range withRange, Range highRange, Graphics2D g2){ double w[] = new double[5];",
+              "normalized_levenshtein_distance": 0.2762
+            }
+          ]
+        }
+      ],
+      "conflict_resolution": [],
+      "resolved_mappings": [
+        {
+          "old_lines": [
+            1
+          ],
+          "new_lines": [
+            1,
+            2,
+            3
+          ],
+          "mapping_type": "split",
+          "score": 0.013
+        },
+        {
+          "old_lines": [
+            2
+          ],
+          "new_lines": [
+            4
+          ],
+          "mapping_type": "unchanged",
+          "score": 0.0
+        },
+        {
+          "old_lines": [
+            3
+          ],
+          "new_lines": [
+            5
+          ],
+          "mapping_type": "unchanged",
+          "score": 0.0
+        }
+      ],
+      "ground_truth_line_splits": [
+        {
+          "old_line": 1,
+          "new_lines": [
+            1,
+            2,
+            3
+          ],
+          "expected_split": true,
+          "score": 0.013
+        }
+      ]
+    },
+    {
+      "commit": "c002",
+      "message": "Wrap function call arguments",
+      "old_contents": [
+        {
+          "line": 1,
+          "text": "result = calculateTotal(price, taxRate, discount, shippingFee);"
+        },
+        {
+          "line": 2,
+          "text": "return result;"
+        }
+      ],
+      "new_contents": [
+        {
+          "line": 1,
+          "text": "result = calculateTotal("
+        },
+        {
+          "line": 2,
+          "text": "price, taxRate,"
+        },
+        {
+          "line": 3,
+          "text": "discount, shippingFee);"
+        },
+        {
+          "line": 4,
+          "text": "return result;"
+        }
+      ],
+      "unchanged_mappings": [
+        {
+          "old_line": 2,
+          "new_line": 4,
+          "content": "return result;"
+        }
+      ],
+      "candidate_list": [
+        {
+          "old_line": 1,
+          "old_text": "result = calculateTotal(price, taxRate, discount, shippingFee);",
+          "candidates": [
+            {
+              "new_lines": [
+                1
+              ],
+              "joined_text": "result = calculateTotal(",
+              "normalized_levenshtein_distance": 0.619
+            },
+            {
+              "new_lines": [
+                1,
+                2
+              ],
+              "joined_text": "result = calculateTotal( price, taxRate,",
+              "normalized_levenshtein_distance": 0.3968
+            },
+            {
+              "new_lines": [
+                1,
+                2,
+                3
+              ],
+              "joined_text": "result = calculateTotal( price, taxRate, discount, shippingFee);",
+              "normalized_levenshtein_distance": 0.0156
+            },
+            {
+              "new_lines": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "joined_text": "result = calculateTotal( price, taxRate, discount, shippingFee); return result;",
+              "normalized_levenshtein_distance": 0.2025
+            }
+          ]
+        }
+      ],
+      "conflict_resolution": [],
+      "resolved_mappings": [
+        {
+          "old_lines": [
+            1
+          ],
+          "new_lines": [
+            1,
+            2,
+            3
+          ],
+          "mapping_type": "split",
+          "score": 0.0156
+        },
+        {
+          "old_lines": [
+            2
+          ],
+          "new_lines": [
+            4
+          ],
+          "mapping_type": "unchanged",
+          "score": 0.0
+        }
+      ],
+      "ground_truth_line_splits": [
+        {
+          "old_line": 1,
+          "new_lines": [
+            1,
+            2,
+            3
+          ],
+          "expected_split": true,
+          "score": 0.0156
+        }
+      ]
+    },
+    {
+      "commit": "c003",
+      "message": "Split boolean condition",
+      "old_contents": [
+        {
+          "line": 1,
+          "text": "if (user != null && user.isActive() && user.hasPermission(\"WRITE\")) {"
+        },
+        {
+          "line": 2,
+          "text": "save(user);"
+        },
+        {
+          "line": 3,
+          "text": "}"
+        }
+      ],
+      "new_contents": [
+        {
+          "line": 1,
+          "text": "if (user != null"
+        },
+        {
+          "line": 2,
+          "text": "&& user.isActive()"
+        },
+        {
+          "line": 3,
+          "text": "&& user.hasPermission(\"WRITE\")) {"
+        },
+        {
+          "line": 4,
+          "text": "save(user);"
+        },
+        {
+          "line": 5,
+          "text": "}"
+        }
+      ],
+      "unchanged_mappings": [
+        {
+          "old_line": 2,
+          "new_line": 4,
+          "content": "save(user);"
+        },
+        {
+          "old_line": 3,
+          "new_line": 5,
+          "content": "}"
+        }
+      ],
+      "candidate_list": [
+        {
+          "old_line": 1,
+          "old_text": "if (user != null && user.isActive() && user.hasPermission(\"WRITE\")) {",
+          "candidates": [
+            {
+              "new_lines": [
+                1
+              ],
+              "joined_text": "if (user != null",
+              "normalized_levenshtein_distance": 0.7681
+            },
+            {
+              "new_lines": [
+                1,
+                2
+              ],
+              "joined_text": "if (user != null && user.isActive()",
+              "normalized_levenshtein_distance": 0.4928
+            },
+            {
+              "new_lines": [
+                1,
+                2,
+                3
+              ],
+              "joined_text": "if (user != null && user.isActive() && user.hasPermission(\"WRITE\")) {",
+              "normalized_levenshtein_distance": 0.0
+            },
+            {
+              "new_lines": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "joined_text": "if (user != null && user.isActive() && user.hasPermission(\"WRITE\")) { save(user);",
+              "normalized_levenshtein_distance": 0.1481
+            }
+          ]
+        }
+      ],
+      "conflict_resolution": [],
+      "resolved_mappings": [
+        {
+          "old_lines": [
+            1
+          ],
+          "new_lines": [
+            1,
+            2,
+            3
+          ],
+          "mapping_type": "split",
+          "score": 0.0
+        },
+        {
+          "old_lines": [
+            2
+          ],
+          "new_lines": [
+            4
+          ],
+          "mapping_type": "unchanged",
+          "score": 0.0
+        },
+        {
+          "old_lines": [
+            3
+          ],
+          "new_lines": [
+            5
+          ],
+          "mapping_type": "unchanged",
+          "score": 0.0
+        }
+      ],
+      "ground_truth_line_splits": [
+        {
+          "old_line": 1,
+          "new_lines": [
+            1,
+            2,
+            3
+          ],
+          "expected_split": true,
+          "score": 0.0
+        }
+      ]
+    },
+    {
+      "commit": "c004",
+      "message": "Wrap chained builder call",
+      "old_contents": [
+        {
+          "line": 1,
+          "text": "request.setHeader(\"Accept\", \"application/json\").setTimeout(5000).enableRetry(true);"
+        },
+        {
+          "line": 2,
+          "text": "client.send(request);"
+        }
+      ],
+      "new_contents": [
+        {
+          "line": 1,
+          "text": "request.setHeader(\"Accept\", \"application/json\")"
+        },
+        {
+          "line": 2,
+          "text": ".setTimeout(5000)"
+        },
+        {
+          "line": 3,
+          "text": ".enableRetry(true);"
+        },
+        {
+          "line": 4,
+          "text": "client.send(request);"
+        }
+      ],
+      "unchanged_mappings": [
+        {
+          "old_line": 2,
+          "new_line": 4,
+          "content": "client.send(request);"
+        }
+      ],
+      "candidate_list": [
+        {
+          "old_line": 1,
+          "old_text": "request.setHeader(\"Accept\", \"application/json\").setTimeout(5000).enableRetry(true);",
+          "candidates": [
+            {
+              "new_lines": [
+                1
+              ],
+              "joined_text": "request.setHeader(\"Accept\", \"application/json\")",
+              "normalized_levenshtein_distance": 0.4337
+            },
+            {
+              "new_lines": [
+                1,
+                2
+              ],
+              "joined_text": "request.setHeader(\"Accept\", \"application/json\") .setTimeout(5000)",
+              "normalized_levenshtein_distance": 0.241
+            },
+            {
+              "new_lines": [
+                1,
+                2,
+                3
+              ],
+              "joined_text": "request.setHeader(\"Accept\", \"application/json\") .setTimeout(5000) .enableRetry(true);",
+              "normalized_levenshtein_distance": 0.0235
+            },
+            {
+              "new_lines": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "joined_text": "request.setHeader(\"Accept\", \"application/json\") .setTimeout(5000) .enableRetry(true); client.send(request);",
+              "normalized_levenshtein_distance": 0.2243
+            }
+          ]
+        }
+      ],
+      "conflict_resolution": [],
+      "resolved_mappings": [
+        {
+          "old_lines": [
+            1
+          ],
+          "new_lines": [
+            1,
+            2,
+            3
+          ],
+          "mapping_type": "split",
+          "score": 0.0235
+        },
+        {
+          "old_lines": [
+            2
+          ],
+          "new_lines": [
+            4
+          ],
+          "mapping_type": "unchanged",
+          "score": 0.0
+        }
+      ],
+      "ground_truth_line_splits": [
+        {
+          "old_line": 1,
+          "new_lines": [
+            1,
+            2,
+            3
+          ],
+          "expected_split": true,
+          "score": 0.0235
+        }
+      ]
+    },
+    {
+      "commit": "c005",
+      "message": "Control case: edit line but do not split",
+      "old_contents": [
+        {
+          "line": 1,
+          "text": "int timeout = 30;"
+        },
+        {
+          "line": 2,
+          "text": "connect(timeout);"
+        }
+      ],
+      "new_contents": [
+        {
+          "line": 1,
+          "text": "int timeout = 45;"
+        },
+        {
+          "line": 2,
+          "text": "connect(timeout);"
+        }
+      ],
+      "unchanged_mappings": [
+        {
+          "old_line": 2,
+          "new_line": 2,
+          "content": "connect(timeout);"
+        }
+      ],
+      "candidate_list": [],
+      "conflict_resolution": [],
+      "resolved_mappings": [
+        {
+          "old_lines": [
+            2
+          ],
+          "new_lines": [
+            2
+          ],
+          "mapping_type": "unchanged",
+          "score": 0.0
+        },
+        {
+          "old_lines": [
+            1
+          ],
+          "new_lines": [
+            1
+          ],
+          "mapping_type": "modified",
+          "score": 0.1176
+        }
+      ],
+      "ground_truth_line_splits": []
+    },
+    {
+      "commit": "c006",
+      "message": "Split assignment with whitespace normalization",
+      "old_contents": [
+        {
+          "line": 1,
+          "text": "String label = firstName + \" \" + lastName + \" (\" + userId + \")\";"
+        },
+        {
+          "line": 2,
+          "text": "print(label);"
+        }
+      ],
+      "new_contents": [
+        {
+          "line": 1,
+          "text": "String label = firstName + \" \" + lastName"
+        },
+        {
+          "line": 2,
+          "text": "+ \" (\" + userId + \")\";"
+        },
+        {
+          "line": 3,
+          "text": "print(label);"
+        }
+      ],
+      "unchanged_mappings": [
+        {
+          "old_line": 2,
+          "new_line": 3,
+          "content": "print(label);"
+        }
+      ],
+      "candidate_list": [
+        {
+          "old_line": 1,
+          "old_text": "String label = firstName + \" \" + lastName + \" (\" + userId + \")\";",
+          "candidates": [
+            {
+              "new_lines": [
+                1
+              ],
+              "joined_text": "String label = firstName + \" \" + lastName",
+              "normalized_levenshtein_distance": 0.3594
+            },
+            {
+              "new_lines": [
+                1,
+                2
+              ],
+              "joined_text": "String label = firstName + \" \" + lastName + \" (\" + userId + \")\";",
+              "normalized_levenshtein_distance": 0.0
+            },
+            {
+              "new_lines": [
+                1,
+                2,
+                3
+              ],
+              "joined_text": "String label = firstName + \" \" + lastName + \" (\" + userId + \")\"; print(label);",
+              "normalized_levenshtein_distance": 0.1795
+            }
+          ]
+        }
+      ],
+      "conflict_resolution": [],
+      "resolved_mappings": [
+        {
+          "old_lines": [
+            1
+          ],
+          "new_lines": [
+            1,
+            2
+          ],
+          "mapping_type": "split",
+          "score": 0.0
+        },
+        {
+          "old_lines": [
+            2
+          ],
+          "new_lines": [
+            3
+          ],
+          "mapping_type": "unchanged",
+          "score": 0.0
+        }
+      ],
+      "ground_truth_line_splits": [
+        {
+          "old_line": 1,
+          "new_lines": [
+            1,
+            2
+          ],
+          "expected_split": true,
+          "score": 0.0
+        }
+      ]
+    },
+    {
+      "commit": "c007",
+      "message": "Split logging statement while nearby line is inserted",
+      "old_contents": [
+        {
+          "line": 1,
+          "text": "logger.info(\"User {} logged in from {} using {}\", userId, ipAddress, agent);"
+        },
+        {
+          "line": 2,
+          "text": "audit(userId);"
+        }
+      ],
+      "new_contents": [
+        {
+          "line": 1,
+          "text": "logger.info("
+        },
+        {
+          "line": 2,
+          "text": "\"User {} logged in from {} using {}\","
+        },
+        {
+          "line": 3,
+          "text": "userId, ipAddress, agent);"
+        },
+        {
+          "line": 4,
+          "text": "metrics.increment(\"login\");"
+        },
+        {
+          "line": 5,
+          "text": "audit(userId);"
+        }
+      ],
+      "unchanged_mappings": [
+        {
+          "old_line": 2,
+          "new_line": 5,
+          "content": "audit(userId);"
+        }
+      ],
+      "candidate_list": [
+        {
+          "old_line": 1,
+          "old_text": "logger.info(\"User {} logged in from {} using {}\", userId, ipAddress, agent);",
+          "candidates": [
+            {
+              "new_lines": [
+                1
+              ],
+              "joined_text": "logger.info(",
+              "normalized_levenshtein_distance": 0.8421
+            },
+            {
+              "new_lines": [
+                1,
+                2
+              ],
+              "joined_text": "logger.info( \"User {} logged in from {} using {}\",",
+              "normalized_levenshtein_distance": 0.3684
+            },
+            {
+              "new_lines": [
+                1,
+                2,
+                3
+              ],
+              "joined_text": "logger.info( \"User {} logged in from {} using {}\", userId, ipAddress, agent);",
+              "normalized_levenshtein_distance": 0.013
+            },
+            {
+              "new_lines": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "joined_text": "logger.info( \"User {} logged in from {} using {}\", userId, ipAddress, agent); metrics.increment(\"login\");",
+              "normalized_levenshtein_distance": 0.2762
+            }
+          ]
+        }
+      ],
+      "conflict_resolution": [],
+      "resolved_mappings": [
+        {
+          "old_lines": [
+            1
+          ],
+          "new_lines": [
+            1,
+            2,
+            3
+          ],
+          "mapping_type": "split",
+          "score": 0.013
+        },
+        {
+          "old_lines": [
+            2
+          ],
+          "new_lines": [
+            5
+          ],
+          "mapping_type": "unchanged",
+          "score": 0.0
+        },
+        {
+          "old_lines": [],
+          "new_lines": [
+            4
+          ],
+          "mapping_type": "inserted",
+          "score": null
+        }
+      ],
+      "ground_truth_line_splits": [
+        {
+          "old_line": 1,
+          "new_lines": [
+            1,
+            2,
+            3
+          ],
+          "expected_split": true,
+          "score": 0.013
+        }
+      ]
+    },
+    {
+      "commit": "c008",
+      "message": "Two old lines compete for an overlapping candidate",
+      "old_contents": [
+        {
+          "line": 1,
+          "text": "renderTitle(title, subtitle, theme);"
+        },
+        {
+          "line": 2,
+          "text": "renderBody(body, theme);"
+        },
+        {
+          "line": 3,
+          "text": "return page;"
+        }
+      ],
+      "new_contents": [
+        {
+          "line": 1,
+          "text": "renderTitle("
+        },
+        {
+          "line": 2,
+          "text": "title, subtitle, theme);"
+        },
+        {
+          "line": 3,
+          "text": "renderBody(body,"
+        },
+        {
+          "line": 4,
+          "text": "theme);"
+        },
+        {
+          "line": 5,
+          "text": "return page;"
+        }
+      ],
+      "unchanged_mappings": [
+        {
+          "old_line": 3,
+          "new_line": 5,
+          "content": "return page;"
+        }
+      ],
+      "candidate_list": [
+        {
+          "old_line": 1,
+          "old_text": "renderTitle(title, subtitle, theme);",
+          "candidates": [
+            {
+              "new_lines": [
+                1
+              ],
+              "joined_text": "renderTitle(",
+              "normalized_levenshtein_distance": 0.6667
+            },
+            {
+              "new_lines": [
+                1,
+                2
+              ],
+              "joined_text": "renderTitle( title, subtitle, theme);",
+              "normalized_levenshtein_distance": 0.027
+            },
+            {
+              "new_lines": [
+                1,
+                2,
+                3
+              ],
+              "joined_text": "renderTitle( title, subtitle, theme); renderBody(body,",
+              "normalized_levenshtein_distance": 0.3333
+            }
+          ]
+        },
+        {
+          "old_line": 2,
+          "old_text": "renderBody(body, theme);",
+          "candidates": [
+            {
+              "new_lines": [
+                3
+              ],
+              "joined_text": "renderBody(body,",
+              "normalized_levenshtein_distance": 0.3333
+            },
+            {
+              "new_lines": [
+                3,
+                4
+              ],
+              "joined_text": "renderBody(body, theme);",
+              "normalized_levenshtein_distance": 0.0
+            },
+            {
+              "new_lines": [
+                3,
+                4,
+                5
+              ],
+              "joined_text": "renderBody(body, theme); return page;",
+              "normalized_levenshtein_distance": 0.3514
+            },
+            {
+              "new_lines": [
+                2,
+                3
+              ],
+              "joined_text": "title, subtitle, theme); renderBody(body,",
+              "normalized_levenshtein_distance": 0.7561
+            }
+          ]
+        }
+      ],
+      "conflict_resolution": [
+        {
+          "old_line": 2,
+          "competing_candidates": [
+            {
+              "new_lines": [
+                2,
+                3
+              ],
+              "joined_text": "title, subtitle, theme); renderBody(body,",
+              "normalized_levenshtein_distance": 0.7561
+            },
+            {
+              "new_lines": [
+                3,
+                4
+              ],
+              "joined_text": "renderBody(body, theme);",
+              "normalized_levenshtein_distance": 0.0
+            }
+          ],
+          "winner_new_lines": [
+            3,
+            4
+          ],
+          "rule": "choose lowest normalized Levenshtein distance among overlapping candidates"
+        }
+      ],
+      "resolved_mappings": [
+        {
+          "old_lines": [
+            1
+          ],
+          "new_lines": [
+            1,
+            2
+          ],
+          "mapping_type": "split",
+          "score": 0.027
+        },
+        {
+          "old_lines": [
+            2
+          ],
+          "new_lines": [
+            3,
+            4
+          ],
+          "mapping_type": "split",
+          "score": 0.0
+        },
+        {
+          "old_lines": [
+            3
+          ],
+          "new_lines": [
+            5
+          ],
+          "mapping_type": "unchanged",
+          "score": 0.0
+        }
+      ],
+      "ground_truth_line_splits": [
+        {
+          "old_line": 1,
+          "new_lines": [
+            1,
+            2
+          ],
+          "expected_split": true,
+          "score": 0.027
+        },
+        {
+          "old_line": 2,
+          "new_lines": [
+            3,
+            4
+          ],
+          "expected_split": true,
+          "score": 0.0
+        }
+      ]
+    },
+    {
+      "commit": "c009",
+      "message": "Negative control: adjacent unchanged lines should not be combined",
+      "old_contents": [
+        {
+          "line": 1,
+          "text": "String first = user.getFirstName();"
+        },
+        {
+          "line": 2,
+          "text": "String last = user.getLastName();"
+        },
+        {
+          "line": 3,
+          "text": "return first + last;"
+        }
+      ],
+      "new_contents": [
+        {
+          "line": 1,
+          "text": "String first = user.getFirstName();"
+        },
+        {
+          "line": 2,
+          "text": "String last = user.getLastName();"
+        },
+        {
+          "line": 3,
+          "text": "return first + \" \" + last;"
+        }
+      ],
+      "unchanged_mappings": [
+        {
+          "old_line": 1,
+          "new_line": 1,
+          "content": "String first = user.getFirstName();"
+        },
+        {
+          "old_line": 2,
+          "new_line": 2,
+          "content": "String last = user.getLastName();"
+        }
+      ],
+      "candidate_list": [],
+      "conflict_resolution": [],
+      "resolved_mappings": [
+        {
+          "old_lines": [
+            1
+          ],
+          "new_lines": [
+            1
+          ],
+          "mapping_type": "unchanged",
+          "score": 0.0
+        },
+        {
+          "old_lines": [
+            2
+          ],
+          "new_lines": [
+            2
+          ],
+          "mapping_type": "unchanged",
+          "score": 0.0
+        },
+        {
+          "old_lines": [
+            3
+          ],
+          "new_lines": [
+            3
+          ],
+          "mapping_type": "modified",
+          "score": 0.2308
+        }
+      ],
+      "ground_truth_line_splits": []
+    },
+    {
+      "commit": "c010",
+      "message": "Split SQL query string construction",
+      "old_contents": [
+        {
+          "line": 1,
+          "text": "String sql = \"SELECT id, name, email FROM users WHERE active = 1 ORDER BY name\";"
+        },
+        {
+          "line": 2,
+          "text": "execute(sql);"
+        }
+      ],
+      "new_contents": [
+        {
+          "line": 1,
+          "text": "String sql = \"SELECT id, name, email FROM users \""
+        },
+        {
+          "line": 2,
+          "text": "+ \"WHERE active = 1 \""
+        },
+        {
+          "line": 3,
+          "text": "+ \"ORDER BY name\";"
+        },
+        {
+          "line": 4,
+          "text": "execute(sql);"
+        }
+      ],
+      "unchanged_mappings": [
+        {
+          "old_line": 2,
+          "new_line": 4,
+          "content": "execute(sql);"
+        }
+      ],
+      "candidate_list": [
+        {
+          "old_line": 1,
+          "old_text": "String sql = \"SELECT id, name, email FROM users WHERE active = 1 ORDER BY name\";",
+          "candidates": [
+            {
+              "new_lines": [
+                1
+              ],
+              "joined_text": "String sql = \"SELECT id, name, email FROM users \"",
+              "normalized_levenshtein_distance": 0.3875
+            },
+            {
+              "new_lines": [
+                1,
+                2
+              ],
+              "joined_text": "String sql = \"SELECT id, name, email FROM users \" + \"WHERE active = 1 \"",
+              "normalized_levenshtein_distance": 0.2375
+            },
+            {
+              "new_lines": [
+                1,
+                2,
+                3
+              ],
+              "joined_text": "String sql = \"SELECT id, name, email FROM users \" + \"WHERE active = 1 \" + \"ORDER BY name\";",
+              "normalized_levenshtein_distance": 0.1111
+            },
+            {
+              "new_lines": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "joined_text": "String sql = \"SELECT id, name, email FROM users \" + \"WHERE active = 1 \" + \"ORDER BY name\"; execute(sql);",
+              "normalized_levenshtein_distance": 0.2308
+            }
+          ]
+        }
+      ],
+      "conflict_resolution": [],
+      "resolved_mappings": [
+        {
+          "old_lines": [
+            1
+          ],
+          "new_lines": [
+            1,
+            2,
+            3
+          ],
+          "mapping_type": "split",
+          "score": 0.1111
+        },
+        {
+          "old_lines": [
+            2
+          ],
+          "new_lines": [
+            4
+          ],
+          "mapping_type": "unchanged",
+          "score": 0.0
+        }
+      ],
+      "ground_truth_line_splits": [
+        {
+          "old_line": 1,
+          "new_lines": [
+            1,
+            2,
+            3
+          ],
+          "expected_split": true,
+          "score": 0.1111
+        }
+      ]
+    }
+  ]
+}
