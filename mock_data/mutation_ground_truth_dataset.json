@@ -1,0 +1,136 @@
+[
+  {
+    "commit": "m001",
+    "taxonomy_type": "Renaming",
+    "message": "Renamed variable p to perimeter",
+    "commit_type": "refactor",
+    "old_contents": [
+      { "line": 1, "text": "def calculate_perimeter(length, width):" },
+      { "line": 2, "text": "    p = 2 * (length + width)" },
+      { "line": 3, "text": "    return p"}
+    ],
+    "new_contents": [
+      { "line": 1, "text": "def calculate_perimeter(length, width):" },
+      { "line": 2, "text": "    perimeter = 2 * (length + width)" },
+      { "line": 3, "text": "    return perimeter" }
+    ],
+    "resolved_mappings": [
+      { "old_lines": [1], "new_lines": [1], "mapping_type": "unchanged" },
+      { "old_lines": [2], "new_lines": [2], "mapping_type": "modified" },
+      { "old_lines": [3], "new_lines": [3], "mapping_type": "modified" }
+    ]
+  },
+  {
+    "commit": "m002",
+    "taxonomy_type": "Wrapping",
+    "message": "Wrapping file read in try-except",
+    "commit_type": "bug-fix",
+    "old_contents": [
+      { "line": 1, "text": "file = open('document.txt')" },
+      { "line": 2, "text": "text = file.read()" },
+      { "line": 3, "text": "print(text)" }
+    ],
+    "new_contents": [
+      { "line": 1, "text": "try:" },
+      { "line": 2, "text": "    file = open('document.txt')" },
+      { "line": 3, "text": "    text = file.read()" },
+      { "line": 4, "text": "    print(text)" },
+      { "line": 5, "text": "except FileNotFoundError:" },
+      { "line": 6, "text": "    print('File not found.')"}
+    ],
+    "resolved_mappings": [
+      { "old_lines": [1], "new_lines": [2], "mapping_type": "moved" },
+      { "old_lines": [2], "new_lines": [3], "mapping_type": "moved" },
+      { "old_lines": [3], "new_lines": [4], "mapping_type": "moved" }
+    ]
+  },
+  {
+    "commit": "m003",
+    "taxonomy_type": "Change in data structure",
+    "message": "Updated menu to use a dictionary so we can store prices",
+    "commit_type": "bug-fix",
+    "old_contents": [
+      { "line": 1, "text": "menu = ['Espresso', 'Latte', 'Cappuccino']" },
+      { "line": 2, "text": "print(menu[1])" }
+    ],
+    "new_contents": [
+      { "line": 1, "text": "menu = {'Espresso': 2.50, 'Latte': 4.00, 'Cappuccino': 4.50}" },
+      { "line": 2, "text": "print(list(menu.keys())[1])" }
+    ],
+    "resolved_mappings": [
+      { "old_lines": [1], "new_lines": [1], "mapping_type": "modified" },
+      { "old_lines": [2], "new_lines": [2], "mapping_type": "modified" }
+    ]
+  },
+  {
+    "commit": "m004",
+    "taxonomy_type": "Code reordering",
+    "message": "Moved total calculation to the top for better flow",
+    "commit_type": "bug-introducing",
+    "old_contents": [
+      { "line": 1, "text": "price = 10" },
+      { "line": 2, "text": "tax = price * 0.13" },
+      { "line": 3, "text": "total = price + tax" }
+    ],
+    "new_contents": [
+      { "line": 1, "text": "total = price + tax" },
+      { "line": 2, "text": "price = 10" },
+      { "line": 3, "text": "tax = price * 0.13" }
+    ],
+    "resolved_mappings": [
+      { "old_lines": [1], "new_lines": [2], "mapping_type": "moved" },
+      { "old_lines": [2], "new_lines": [3], "mapping_type": "moved" },
+      { "old_lines": [3], "new_lines": [1], "mapping_type": "moved" }
+    ]
+  },
+  {
+    "commit": "m005",
+    "taxonomy_type": "Wrapping",
+    "message": "Wrapped division in try-except to prevent ZeroDivisionError",
+    "commit_type": "bug-fix",
+    "old_contents": [
+      { "line": 1, "text": "num = 10" },
+      { "line": 2, "text": "result = num / 0" },
+      { "line": 3, "text": "print(result)" }
+    ],
+    "new_contents": [
+      { "line": 1, "text": "num = 10" },
+      { "line": 2, "text": "try:" },
+      { "line": 3, "text": "    result = num / 0" },
+      { "line": 4, "text": "    print(result)" },
+      { "line": 5, "text": "except ZeroDivisionError:" },
+      { "line": 6, "text": "    print('Cannot divide by zero')" }
+    ],
+    "resolved_mappings": [
+      { "old_lines": [1], "new_lines": [1], "mapping_type": "unchanged" },
+      { "old_lines": [2], "new_lines": [3], "mapping_type": "moved" },
+      { "old_lines": [3], "new_lines": [4], "mapping_type": "moved" }
+    ]
+  },
+  {
+    "commit": "m006",
+    "taxonomy_type": "Function split",
+    "message": "Extracted user greeting into its own function",
+    "commit_type": "refactor",
+    "old_contents": [
+      { "line": 1, "text": "def main():" },
+      { "line": 2, "text": "    name = 'Isabelle'" },
+      { "line": 3, "text": "    print('Hello, ' + name)" }
+    ],
+    "new_contents": [
+      { "line": 1, "text": "def greet(user_name):" },
+      { "line": 2, "text": "    print('Hello, ' + user_name)" },
+      { "line": 3, "text": "" },
+      { "line": 4, "text": "def main():" },
+      { "line": 5, "text": "    name = 'Isabelle'" },
+      { "line": 6, "text": "    greet(name)" }
+    ],
+    "resolved_mappings": [
+      { "old_lines": [1], "new_lines": [4], "mapping_type": "moved" },
+      { "old_lines": [2], "new_lines": [5], "mapping_type": "moved" },
+      { "old_lines": [3], "new_lines": [2], "mapping_type": "moved" }
+    ]
+  }
+]
+
+
