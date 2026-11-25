@@ -14,33 +14,7 @@ Assumptions for this version:
 * File B includes all lines, even those excluded by candidate top-N filtering.
 """
 
-def normalize_line(text: str) -> str:
-    """Trim outer whitespace and collapse internal whitespace."""
-    return " ".join(text.strip().split())
-
-
-def levenshtein_distance(a: str, b: str) -> int:
-    """Calculate edit distance """
-    if len(a) < len(b):
-        a, b = b, a
-    previous = list(range(len(b) + 1))
-    for i, char_a in enumerate(a, 1):
-        current = [i]
-        for j, char_b in enumerate(b, 1):
-            current.append(min(
-                current[j - 1] + 1,
-                previous[j] + 1,
-                previous[j - 1] + (char_a != char_b),
-            ))
-        previous = current
-    return previous[-1]
-
-
-def normalized_levenshtein(a: str, b: str) -> float:
-    """NLD = edit distance divided by the length of the longer string."""
-    a, b = normalize_line(a), normalize_line(b)
-    denominator = max(len(a), len(b))
-    return levenshtein_distance(a, b) / denominator if denominator else 0.0
+from similarity_utils import normalized_levenshtein, normalize_line
 
 
 def detect_line_splits(
@@ -50,7 +24,7 @@ def detect_line_splits(
     *,
     max_split_lines: int | None = None,
 ) -> dict[int, list[int]]:
-    """Extend Hungarian matches with adjacent, unassigned new lines.
+    """Extend resolved conflicts matches with adjacent, unassigned new lines.
 
     candidates_FileA: {old_line: {"content": str, "context": str,
                       "candidate_list": {new_line: {...}}}}
@@ -67,6 +41,7 @@ def detect_line_splits(
     file_b = {int(k): v for k, v in FileB.items()}
     revised: dict[int, list[int]] = {}
 
+    # iterate through resolved conflicts
     for old_key, assigned in resolved.items():
         old_line = int(old_key)
         if isinstance(assigned, int) or isinstance(assigned, str):
@@ -101,6 +76,7 @@ def detect_line_splits(
             if next_line not in file_b or next_line in occupied_set:
                 break
 
+            # performs merge from list splits
             extended_text = current_text + " " + normalize_line(file_b[next_line]["content"])
             new_score = normalized_levenshtein(old_text, extended_text)
 

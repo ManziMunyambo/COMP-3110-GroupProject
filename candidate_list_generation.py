@@ -83,7 +83,7 @@ def generate_candidate_list(FileA, FileB, num_candidates, threshold):
     # Iterate through each line in File A
     for line_num, line_data in FileA.items():
         #Call candidate_pairing_one_line for lines which have not yet been matched - returns candidates for that line in File A
-        if line_num["matching_line"] == None:
+        if line_data["matching_line"] is None:
             #Creat the entry in the dictionary
             if line_num not in total_candidate_list:
                 total_candidate_list[line_num] = {"content":"",

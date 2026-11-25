@@ -1,33 +1,16 @@
+from candidate_list_generation import generate_candidate_list
+from conflict_resolution import resolve_conflicts
 from detect_line_split import detect_line_splits
 
-# candidates: while lines in file B might match to file A
-candidates_FileA = {
+# Input from preprocessing
+FileA = {
     1: {
         "content": "Hello world",
-        "context": "",
-        "candidate_list": {
-            1: {
-                "content": "Hello",
-                "context": "",
-                "hamming_distance": 0.3
-            },
-            2: {
-                "content": "world",
-                "context": "",
-                "hamming_distance": 0.4
-            }
-        }
+        "matching_line": None,
+        "context": ""
     }
 }
 
-# Mock output from Hungarian conflict resolution
-# which one-to-one mappings were selected by hungarian
-# in this example: Hello world -> Hello
-resolved = {
-    1: 1,
-}
-
-# File B dictionary
 FileB = {
     1: {
         "content": "Hello",
@@ -41,8 +24,26 @@ FileB = {
     }
 }
 
-# Call split detection
-# Shoes if any selected mapping needs to e expanded to multple consecutive lines
-revised = detect_line_splits(candidates_FileA, resolved, FileB)
+# Step 3: Generate candidate matches
+candidates_FileA = generate_candidate_list(
+    FileA, FileB,
+    num_candidates=5,
+    threshold=20
+)
 
-print(revised)
+# Step 4: Resolve conflicts using Hungarian
+resolved = resolve_conflicts(
+    candidates_FileA,
+    threshold=0.4
+)
+
+# Step 5: Detect line splits
+revised = detect_line_splits(
+    candidates_FileA,
+    resolved,
+    FileB
+)
+
+print("Candidates:", candidates_FileA)
+print("Resolved:", resolved)
+print("Revised:", revised)
