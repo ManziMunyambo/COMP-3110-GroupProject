@@ -13,7 +13,7 @@ public class JavaPreprocessor{
             StringBuilder processedCode = new StringBuilder();
 
             for(String line : lines){
-                //step 4, handling comments by splitting them into separate lines
+                //handle comments by splitting them into separate lines
                 int commentIndex = line.indexOf("//");
                 if(commentIndex != -1){
                     String comment = line.substring(commentIndex);
@@ -21,7 +21,7 @@ public class JavaPreprocessor{
                     line = line.substring(0, commentIndex);
                 }
 
-                //steps 2 and 3, removing indentation and turning multiple spaces into one
+                //remove indentation and turning multiple spaces into one
                 String cleanedLine = line.trim().replace("\\s+", " ");
                 if(!cleanedLine.isEmpty()){
                     processedCode.append(cleanedLine).append(" ");
@@ -29,8 +29,8 @@ public class JavaPreprocessor{
             }
 
             String finalCode = processedCode.toString().trim();
-            System.out.println("Preprocessing complete! Starting sanity check...");
-            //step 5, make sure the code can still compile. Sanity check
+            System.out.println("Preprocessing complete! Starting syntax check...");
+            //make sure the code can still compile. Sanity check
             if(testCode(finalCode, sourcePath.getFileName().toString())){
                 return finalCode; //step 6, return the new file
             } else{
@@ -44,13 +44,13 @@ public class JavaPreprocessor{
 
     public static boolean testCode(String processedCode, String originalFileName){
         try{
-            //step 1, write processedCode to a temp file
+            //write processedCode to a temp file
             Path tempDir = Files.createTempDirectory("preprocessor_test");
             Path tempFile = tempDir.resolve(originalFileName);
             Files.writeString(tempFile, processedCode);
             System.out.println("Wrote temporary file to " + tempFile.toAbsolutePath() + "...");
 
-            //step 2, compile with javac
+            //compile with javac
             ProcessBuilder compileProcess = new ProcessBuilder("javac", tempFile.toAbsolutePath().toString());
             compileProcess.redirectErrorStream(true);
             Process compile = compileProcess.start();
@@ -72,7 +72,7 @@ public class JavaPreprocessor{
                 return true;
             }
         } catch (IOException | InterruptedException e){
-            System.out.println("\nSanity check execution failed!\nError: " + e.getMessage());
+            System.out.println("\nSyntax check execution failed!\nError: " + e.getMessage());
             return false;
         }
     }
