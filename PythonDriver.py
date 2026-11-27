@@ -1,18 +1,20 @@
 from pathlib import Path 
 from PythonPreprocessor import preprocess
 
+PROJECT_DIR = Path(__file__).resolve().parent 
+
 def main():
-    sampleFileName = "testing.py" #<- replace this guy!
-    sampleFile = Path(sampleFileName)
-    print("Running preprocessor on ", sampleFileName)
+    sample_file = PROJECT_DIR / "preprocessed_files" /"sample.py" #<- enter your desired file here!
 
-    result = preprocess(sampleFile)
+    output_dir = PROJECT_DIR / "preprocessed_files"
+    output_file = output_dir / "sample_preprocessed.py"
 
-    if result is not None:
-        print("\nPreprocessing complete!\n--- Preprocessed Code ---\n")
-        print(result, "\n")
+    preprocessed_file = preprocess(sample_file, output_file)
+
+    if preprocessed_file is not None:
+        print(f"Preprocessed file written to {preprocessed_file}")
     else:
-        print("\n--- Preprocessing Failed! ---\nNone was returned")
+        print("Preprocessing failed due to syntax errors")
 
 if __name__ == "__main__":
     main()
