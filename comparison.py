@@ -49,7 +49,7 @@ def build_dictionary(lines):
     for text in lines:
         dictionary[line_number] = {
             "content": text,
-            "matching_line": None,
+            "matching_line": -1,
             "context": ""
         }
         line_number = line_number + 1
