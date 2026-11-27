@@ -103,7 +103,7 @@ def add_context(dictionary):
     total_lines = len(dictionary)
 
     for line_number in dictionary:
-        if dictionary[line_number]["matching_line"] is None:
+        if dictionary[line_number]["matching_line"] == -1:
             first = max(1, line_number - CONTEXT_SIZE)
             last = min(total_lines, line_number + CONTEXT_SIZE)
 
