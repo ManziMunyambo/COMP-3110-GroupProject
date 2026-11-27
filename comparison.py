@@ -134,8 +134,8 @@ def final_step(): #change main, make it comparison total there is already a driv
     add_context(new_dict)
 
     output = {
-        "file_A": {"total_lines": len(old_lines), "lines": old_dict},
-        "file_B": {"total_lines": len(new_lines), "lines": new_dict}
+        "file_A": old_dict,
+        "file_B": new_dict
     }
 
     with open(OUTPUT_PATH, "w") as out_file:

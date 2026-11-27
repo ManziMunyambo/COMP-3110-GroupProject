@@ -1,122 +1,116 @@
 {
   "file_A": {
-    "total_lines": 11,
-    "lines": {
-      "1": {
-        "content": "#get the user's name and age and see if they are old or not",
-        "matching_line": 1,
-        "context": ""
-      },
-      "2": {
-        "content": "",
-        "matching_line": 2,
-        "context": ""
-      },
-      "3": {
-        "content": "print(\"Yo\\n\")",
-        "matching_line": 3,
-        "context": ""
-      },
-      "4": {
-        "content": "name = input(\"What is your name? -> \")",
-        "matching_line": 4,
-        "context": ""
-      },
-      "5": {
-        "content": "age = int(input (\"How old are you? -> \"))",
-        "matching_line": 5,
-        "context": ""
-      },
-      "6": {
-        "content": "",
-        "matching_line": 6,
-        "context": ""
-      },
-      "7": {
-        "content": "if age < 67:",
-        "matching_line": -1,
-        "context": "age = int(input (\"How old are you? -> \"))      years_left = 67 - age     print(f\"Hey {name}, you got {years_left} years until you turn 67!\")"
-      },
-      "8": {
-        "content": "    years_left = 67 - age",
-        "matching_line": -1,
-        "context": " if age < 67:     print(f\"Hey {name}, you got {years_left} years until you turn 67!\") else:"
-      },
-      "9": {
-        "content": "    print(f\"Hey {name}, you got {years_left} years until you turn 67!\")",
-        "matching_line": -1,
-        "context": "if age < 67:     years_left = 67 - age else:     print(f\"Hey {name}, you are 67 years old or older.\")"
-      },
-      "10": {
-        "content": "else:",
-        "matching_line": 10,
-        "context": ""
-      },
-      "11": {
-        "content": "    print(f\"Hey {name}, you are 67 years old or older.\")",
-        "matching_line": -1,
-        "context": "    print(f\"Hey {name}, you got {years_left} years until you turn 67!\") else:"
-      }
+    "1": {
+      "content": "#get the user's name and age and see if they are old or not",
+      "matching_line": 1,
+      "context": ""
+    },
+    "2": {
+      "content": "",
+      "matching_line": 2,
+      "context": ""
+    },
+    "3": {
+      "content": "print(\"Yo\\n\")",
+      "matching_line": 3,
+      "context": ""
+    },
+    "4": {
+      "content": "name = input(\"What is your name? -> \")",
+      "matching_line": 4,
+      "context": ""
+    },
+    "5": {
+      "content": "age = int(input (\"How old are you? -> \"))",
+      "matching_line": 5,
+      "context": ""
+    },
+    "6": {
+      "content": "",
+      "matching_line": 6,
+      "context": ""
+    },
+    "7": {
+      "content": "if age < 67:",
+      "matching_line": -1,
+      "context": "age = int(input (\"How old are you? -> \"))      years_left = 67 - age     print(f\"Hey {name}, you got {years_left} years until you turn 67!\")"
+    },
+    "8": {
+      "content": "    years_left = 67 - age",
+      "matching_line": -1,
+      "context": " if age < 67:     print(f\"Hey {name}, you got {years_left} years until you turn 67!\") else:"
+    },
+    "9": {
+      "content": "    print(f\"Hey {name}, you got {years_left} years until you turn 67!\")",
+      "matching_line": -1,
+      "context": "if age < 67:     years_left = 67 - age else:     print(f\"Hey {name}, you are 67 years old or older.\")"
+    },
+    "10": {
+      "content": "else:",
+      "matching_line": 10,
+      "context": ""
+    },
+    "11": {
+      "content": "    print(f\"Hey {name}, you are 67 years old or older.\")",
+      "matching_line": -1,
+      "context": "    print(f\"Hey {name}, you got {years_left} years until you turn 67!\") else:"
     }
   },
   "file_B": {
-    "total_lines": 11,
-    "lines": {
-      "1": {
-        "content": "#get the user's name and age and see if they are old or not",
-        "matching_line": 1,
-        "context": ""
-      },
-      "2": {
-        "content": "",
-        "matching_line": 2,
-        "context": ""
-      },
-      "3": {
-        "content": "print(\"Yo\\n\")",
-        "matching_line": 3,
-        "context": ""
-      },
-      "4": {
-        "content": "name = input(\"What is your name? -> \")",
-        "matching_line": 4,
-        "context": ""
-      },
-      "5": {
-        "content": "age = int(input (\"How old are you? -> \"))",
-        "matching_line": 5,
-        "context": ""
-      },
-      "6": {
-        "content": "",
-        "matching_line": 6,
-        "context": ""
-      },
-      "7": {
-        "content": "if age < 85:",
-        "matching_line": -1,
-        "context": "age = int(input (\"How old are you? -> \"))      years_left = 85 - age     print(f\"Hey {name}, you got {years_left} years until you turn 85!\")"
-      },
-      "8": {
-        "content": "    years_left = 85 - age",
-        "matching_line": -1,
-        "context": " if age < 85:     print(f\"Hey {name}, you got {years_left} years until you turn 85!\") else:"
-      },
-      "9": {
-        "content": "    print(f\"Hey {name}, you got {years_left} years until you turn 85!\")",
-        "matching_line": -1,
-        "context": "if age < 85:     years_left = 85 - age else:     print(f\"Hey {name}, you are 85 years old or older.\")"
-      },
-      "10": {
-        "content": "else:",
-        "matching_line": 10,
-        "context": ""
-      },
-      "11": {
-        "content": "    print(f\"Hey {name}, you are 85 years old or older.\")",
-        "matching_line": -1,
-        "context": "    print(f\"Hey {name}, you got {years_left} years until you turn 85!\") else:"
-      }
+    "1": {
+      "content": "#get the user's name and age and see if they are old or not",
+      "matching_line": 1,
+      "context": ""
+    },
+    "2": {
+      "content": "",
+      "matching_line": 2,
+      "context": ""
+    },
+    "3": {
+      "content": "print(\"Yo\\n\")",
+      "matching_line": 3,
+      "context": ""
+    },
+    "4": {
+      "content": "name = input(\"What is your name? -> \")",
+      "matching_line": 4,
+      "context": ""
+    },
+    "5": {
+      "content": "age = int(input (\"How old are you? -> \"))",
+      "matching_line": 5,
+      "context": ""
+    },
+    "6": {
+      "content": "",
+      "matching_line": 6,
+      "context": ""
+    },
+    "7": {
+      "content": "if age < 85:",
+      "matching_line": -1,
+      "context": "age = int(input (\"How old are you? -> \"))      years_left = 85 - age     print(f\"Hey {name}, you got {years_left} years until you turn 85!\")"
+    },
+    "8": {
+      "content": "    years_left = 85 - age",
+      "matching_line": -1,
+      "context": " if age < 85:     print(f\"Hey {name}, you got {years_left} years until you turn 85!\") else:"
+    },
+    "9": {
+      "content": "    print(f\"Hey {name}, you got {years_left} years until you turn 85!\")",
+      "matching_line": -1,
+      "context": "if age < 85:     years_left = 85 - age else:     print(f\"Hey {name}, you are 85 years old or older.\")"
+    },
+    "10": {
+      "content": "else:",
+      "matching_line": 10,
+      "context": ""
+    },
+    "11": {
+      "content": "    print(f\"Hey {name}, you are 85 years old or older.\")",
+      "matching_line": -1,
+      "context": "    print(f\"Hey {name}, you got {years_left} years until you turn 85!\") else:"
     }
   }
 }

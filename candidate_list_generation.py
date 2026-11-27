@@ -94,7 +94,7 @@ def generate_candidate_list(FileA, FileB, num_candidates, threshold):
                                                 "candidate_list":{}
                                                 }
             candidates = candidate_pairings_one_line(line_data, FileB, num_candidates, threshold)
-            print(candidates)
+            # print(candidates)
             #Convert the candidates into the proper dictionary format and add to the total candidates dictionary
             total_candidate_list[line_num]["content"] = FileA[line_num]["content"]
             total_candidate_list[line_num]["context"] = FileA[line_num]["context"]

@@ -1,0 +1,34 @@
+{
+    "7": {
+        "content": "if age < 67:",
+        "context": "age = int(input (\"How old are you? -> \"))      years_left = 67 - age     print(f\"Hey {name}, you got {years_left} years until you turn 67!\")",
+        "candidate_list": {}
+    },
+    "8": {
+        "content": "    years_left = 67 - age",
+        "context": " if age < 67:     print(f\"Hey {name}, you got {years_left} years until you turn 67!\") else:",
+        "candidate_list": {
+            "8": {
+                "content": "    years_left = 85 - age",
+                "context": " if age < 85:     print(f\"Hey {name}, you got {years_left} years until you turn 85!\") else:",
+                "hamming_distance": 0.1625
+            }
+        }
+    },
+    "9": {
+        "content": "    print(f\"Hey {name}, you got {years_left} years until you turn 67!\")",
+        "context": "if age < 67:     years_left = 67 - age else:     print(f\"Hey {name}, you are 67 years old or older.\")",
+        "candidate_list": {}
+    },
+    "11": {
+        "content": "    print(f\"Hey {name}, you are 67 years old or older.\")",
+        "context": "    print(f\"Hey {name}, you got {years_left} years until you turn 67!\") else:",
+        "candidate_list": {
+            "11": {
+                "content": "    print(f\"Hey {name}, you are 85 years old or older.\")",
+                "context": "    print(f\"Hey {name}, you got {years_left} years until you turn 85!\") else:",
+                "hamming_distance": 0.13125
+            }
+        }
+    }
+}
