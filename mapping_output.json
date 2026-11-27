@@ -1,0 +1,87 @@
+{
+  "file_A": {
+    "total_lines": 7,
+    "lines": {
+      "1": {
+        "content": "public void readFile(String path) {",
+        "matching_line": 1,
+        "context": ""
+      },
+      "2": {
+        "content": "    FileReader fr = new FileReader(path);",
+        "matching_line": 2,
+        "context": ""
+      },
+      "3": {
+        "content": "    LineReader lr = new LineReader(fr);",
+        "matching_line": null,
+        "context": "public void readFile(String path) {     FileReader fr = new FileReader(path);     String line = null;     System.out.println(\"done\");"
+      },
+      "4": {
+        "content": "    String line = null;",
+        "matching_line": 4,
+        "context": ""
+      },
+      "5": {
+        "content": "    System.out.println(\"done\");",
+        "matching_line": 6,
+        "context": ""
+      },
+      "6": {
+        "content": "    fr.close();",
+        "matching_line": 7,
+        "context": ""
+      },
+      "7": {
+        "content": "}",
+        "matching_line": 8,
+        "context": ""
+      }
+    }
+  },
+  "file_B": {
+    "total_lines": 8,
+    "lines": {
+      "1": {
+        "content": "public void readFile(String path) {",
+        "matching_line": 1,
+        "context": ""
+      },
+      "2": {
+        "content": "    FileReader fr = new FileReader(path);",
+        "matching_line": 2,
+        "context": ""
+      },
+      "3": {
+        "content": "    BufferedReader br = new BufferedReader(fr);",
+        "matching_line": null,
+        "context": "public void readFile(String path) {     FileReader fr = new FileReader(path);     String line = null;     int count = 0;"
+      },
+      "4": {
+        "content": "    String line = null;",
+        "matching_line": 4,
+        "context": ""
+      },
+      "5": {
+        "content": "    int count = 0;",
+        "matching_line": null,
+        "context": "    BufferedReader br = new BufferedReader(fr);     String line = null;     System.out.println(\"done\");     fr.close();"
+      },
+      "6": {
+        "content": "    System.out.println(\"done\");",
+        "matching_line": 5,
+        "context": ""
+      },
+      "7": {
+        "content": "    fr.close();",
+        "matching_line": 6,
+        "context": ""
+      },
+      "8": {
+        "content": "}",
+        "matching_line": 7,
+        "context": ""
+      }
+    }
+  }
+}
