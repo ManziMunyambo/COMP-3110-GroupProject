@@ -7,6 +7,8 @@ from simhash import Simhash
 #Context and content weights - NOTE: using 0.6 and 0.4 as weights because those are in the slides (may change later on)
 CONTEXT_WEIGHT = 0.4
 CONTENT_WEIGHT = 0.6
+#Bit width - length of simhashes 
+BIT_WIDTH = 64
 
 # Method 1: Calculate simhash of a line
 # Parameters: A line (or lines) of a file
@@ -27,9 +29,9 @@ def calculate_hamming_distance(line1, line2):
 # Output: the combined distance
 def calculate_combined_distance(line1_simhash, line1context_simhash, line2_simhash, line2context_simhash):
     #Calculate hamming distance for content
-    content_distance = calculate_hamming_distance(line1_simhash, line2_simhash)
+    content_distance = calculate_hamming_distance(line1_simhash, line2_simhash)/BIT_WIDTH
     #Calculate hamming distance for context
-    context_distance = calculate_hamming_distance(line1context_simhash, line2context_simhash)
+    context_distance = calculate_hamming_distance(line1context_simhash, line2context_simhash)/BIT_WIDTH
     #Calculate combined hamming distance
     combined_distance = CONTENT_WEIGHT*content_distance +CONTEXT_WEIGHT*context_distance
     return combined_distance
@@ -83,7 +85,8 @@ def generate_candidate_list(FileA, FileB, num_candidates, threshold):
     # Iterate through each line in File A
     for line_num, line_data in FileA.items():
         #Call candidate_pairing_one_line for lines which have not yet been matched - returns candidates for that line in File A
-        if line_data["matching_line"] is None:
+        if FileA[line_num]["matching_line"] == -1:
+            print(line_num)
             #Creat the entry in the dictionary
             if line_num not in total_candidate_list:
                 total_candidate_list[line_num] = {"content":"",
@@ -91,6 +94,7 @@ def generate_candidate_list(FileA, FileB, num_candidates, threshold):
                                                 "candidate_list":{}
                                                 }
             candidates = candidate_pairings_one_line(line_data, FileB, num_candidates, threshold)
+            print(candidates)
             #Convert the candidates into the proper dictionary format and add to the total candidates dictionary
             total_candidate_list[line_num]["content"] = FileA[line_num]["content"]
             total_candidate_list[line_num]["context"] = FileA[line_num]["context"]
