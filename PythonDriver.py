@@ -7,7 +7,8 @@ def main():
     sample_file = PROJECT_DIR / "preprocessed_files" /"sample.py" #<- enter your desired file here!
 
     output_dir = PROJECT_DIR / "preprocessed_files"
-    output_file = output_dir / "sample_preprocessed.py"
+    # * file name dynamic + _preprocessed
+    output_file = output_dir / "sample_preprocessed.txt"
 
     preprocessed_file = preprocess(sample_file, output_file)
 

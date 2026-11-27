@@ -1,86 +1,121 @@
 {
   "file_A": {
-    "total_lines": 7,
+    "total_lines": 11,
     "lines": {
       "1": {
-        "content": "public void readFile(String path) {",
+        "content": "#get the user's name and age and see if they are old or not",
         "matching_line": 1,
         "context": ""
       },
       "2": {
-        "content": "    FileReader fr = new FileReader(path);",
+        "content": "",
         "matching_line": 2,
         "context": ""
       },
       "3": {
-        "content": "    LineReader lr = new LineReader(fr);",
-        "matching_line": null,
-        "context": "public void readFile(String path) {     FileReader fr = new FileReader(path);     String line = null;     System.out.println(\"done\");"
+        "content": "print(\"Yo\\n\")",
+        "matching_line": 3,
+        "context": ""
       },
       "4": {
-        "content": "    String line = null;",
+        "content": "name = input(\"What is your name? -> \")",
         "matching_line": 4,
         "context": ""
       },
       "5": {
-        "content": "    System.out.println(\"done\");",
-        "matching_line": 6,
+        "content": "age = int(input (\"How old are you? -> \"))",
+        "matching_line": 5,
         "context": ""
       },
       "6": {
-        "content": "    fr.close();",
-        "matching_line": 7,
+        "content": "",
+        "matching_line": 6,
         "context": ""
       },
       "7": {
-        "content": "}",
-        "matching_line": 8,
+        "content": "if age < 67:",
+        "matching_line": -1,
+        "context": "age = int(input (\"How old are you? -> \"))      years_left = 67 - age     print(f\"Hey {name}, you got {years_left} years until you turn 67!\")"
+      },
+      "8": {
+        "content": "    years_left = 67 - age",
+        "matching_line": -1,
+        "context": " if age < 67:     print(f\"Hey {name}, you got {years_left} years until you turn 67!\") else:"
+      },
+      "9": {
+        "content": "    print(f\"Hey {name}, you got {years_left} years until you turn 67!\")",
+        "matching_line": -1,
+        "context": "if age < 67:     years_left = 67 - age else:     print(f\"Hey {name}, you are 67 years old or older.\")"
+      },
+      "10": {
+        "content": "else:",
+        "matching_line": 10,
         "context": ""
+      },
+      "11": {
+        "content": "    print(f\"Hey {name}, you are 67 years old or older.\")",
+        "matching_line": -1,
+        "context": "    print(f\"Hey {name}, you got {years_left} years until you turn 67!\") else:"
       }
     }
   },
   "file_B": {
-    "total_lines": 8,
+    "total_lines": 11,
     "lines": {
       "1": {
-        "content": "public void readFile(String path) {",
+        "content": "#get the user's name and age and see if they are old or not",
         "matching_line": 1,
         "context": ""
       },
       "2": {
-        "content": "    FileReader fr = new FileReader(path);",
+        "content": "",
         "matching_line": 2,
         "context": ""
       },
       "3": {
-        "content": "    BufferedReader br = new BufferedReader(fr);",
-        "matching_line": null,
-        "context": "public void readFile(String path) {     FileReader fr = new FileReader(path);     String line = null;     int count = 0;"
+        "content": "print(\"Yo\\n\")",
+        "matching_line": 3,
+        "context": ""
       },
       "4": {
-        "content": "    String line = null;",
+        "content": "name = input(\"What is your name? -> \")",
         "matching_line": 4,
         "context": ""
       },
       "5": {
-        "content": "    int count = 0;",
-        "matching_line": null,
-        "context": "    BufferedReader br = new BufferedReader(fr);     String line = null;     System.out.println(\"done\");     fr.close();"
-      },
-      "6": {
-        "content": "    System.out.println(\"done\");",
+        "content": "age = int(input (\"How old are you? -> \"))",
         "matching_line": 5,
         "context": ""
       },
-      "7": {
-        "content": "    fr.close();",
+      "6": {
+        "content": "",
         "matching_line": 6,
         "context": ""
       },
+      "7": {
+        "content": "if age < 85:",
+        "matching_line": -1,
+        "context": "age = int(input (\"How old are you? -> \"))      years_left = 85 - age     print(f\"Hey {name}, you got {years_left} years until you turn 85!\")"
+      },
       "8": {
-        "content": "}",
-        "matching_line": 7,
+        "content": "    years_left = 85 - age",
+        "matching_line": -1,
+        "context": " if age < 85:     print(f\"Hey {name}, you got {years_left} years until you turn 85!\") else:"
+      },
+      "9": {
+        "content": "    print(f\"Hey {name}, you got {years_left} years until you turn 85!\")",
+        "matching_line": -1,
+        "context": "if age < 85:     years_left = 85 - age else:     print(f\"Hey {name}, you are 85 years old or older.\")"
+      },
+      "10": {
+        "content": "else:",
+        "matching_line": 10,
         "context": ""
+      },
+      "11": {
+        "content": "    print(f\"Hey {name}, you are 85 years old or older.\")",
+        "matching_line": -1,
+        "context": "    print(f\"Hey {name}, you got {years_left} years until you turn 85!\") else:"
       }
     }
   }

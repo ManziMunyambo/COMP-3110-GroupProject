@@ -1,3 +1,5 @@
+from PythonDriver import main as preprocess_data
+from comparison import final_step as detect_unchanged_lines
 from candidate_list_generation import generate_candidate_list
 from conflict_resolution import resolve_conflicts
 from detect_line_split import detect_line_splits
@@ -24,26 +26,37 @@ FileB = {
     }
 }
 
-# Step 3: Generate candidate matches
-candidates_FileA = generate_candidate_list(
-    FileA, FileB,
-    num_candidates=5,
-    threshold=20
-)
+# Step 1: Preprocess data
+preprocess_data()
 
-# Step 4: Resolve conflicts using Hungarian
-resolved = resolve_conflicts(
-    candidates_FileA,
-    threshold=0.4
-)
+# Step 2: detect unchanged lines
+# * need to integrate preprocessed data
 
-# Step 5: Detect line splits
-revised = detect_line_splits(
-    candidates_FileA,
-    resolved,
-    FileB
-)
+#* loop through preprocessed files 
 
-print("Candidates:", candidates_FileA)
-print("Resolved:", resolved)
-print("Revised:", revised)
+
+detect_unchanged_lines()
+
+# # Step 3: Generate candidate matches
+# candidates_FileA = generate_candidate_list(
+#     FileA, FileB,
+#     num_candidates=5,
+#     threshold=20
+# )
+
+# # Step 4: Resolve conflicts using Hungarian
+# resolved = resolve_conflicts(
+#     candidates_FileA,
+#     threshold=0.4
+# )
+
+# # Step 5: Detect line splits
+# revised = detect_line_splits(
+#     candidates_FileA,
+#     resolved,
+#     FileB
+# )
+
+# print("Candidates:", candidates_FileA)
+# print("Resolved:", resolved)
+# print("Revised:", revised)

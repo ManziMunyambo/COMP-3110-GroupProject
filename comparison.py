@@ -19,8 +19,8 @@ import json      # used to save the results as a JSON file
 # CONTEXT_SIZE is the number of lines we look at above and below
 # a line that has no match. This helps show what is around that line.
 
-OLD_FILE_PATH = "old_file.txt"
-NEW_FILE_PATH = "new_file.txt"
+OLD_FILE_PATH = "preprocessed_files/sample_preprocessed.txt"
+NEW_FILE_PATH = "preprocessed_files/sample_new_preprocessed.txt"
 OUTPUT_PATH = "mapping_output.json"
 CONTEXT_SIZE = 2
 
@@ -49,7 +49,7 @@ def build_dictionary(lines):
     for text in lines:
         dictionary[line_number] = {
             "content": text,
-            "matching_line": None,
+            "matching_line": -1,
             "context": ""
         }
         line_number = line_number + 1
@@ -103,7 +103,7 @@ def add_context(dictionary):
     total_lines = len(dictionary)
 
     for line_number in dictionary:
-        if dictionary[line_number]["matching_line"] is None:
+        if dictionary[line_number]["matching_line"] == -1:
             first = max(1, line_number - CONTEXT_SIZE)
             last = min(total_lines, line_number + CONTEXT_SIZE)
 
